@@ -25,15 +25,19 @@ public class MainActivity extends AppCompatActivity {
         btnConvert.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validate()) {
+                if (etNumber.length() < 4 && validate()) {
                     String numberz = etNumber.getText().toString();
                     try {
                         final int number = Integer.parseInt(numberz);
+
                         String returnz = RojinConvert.convertNumbersInFigure(number);
                         tvOutput.setText(returnz);
                     } catch (NumberFormatException e) {
 
                     }
+
+                } else {
+                    tvOutput.setText("Error");
 
                 }
             }
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     private boolean validate() {
         if (TextUtils.isEmpty(etNumber.getText().toString())) {
             etNumber.setError("Please enter numbers.");
